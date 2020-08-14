@@ -2,14 +2,25 @@
 
 ## ORM设计思想
 
-#### ORM: Object-Relational-Mapping
+#### 核心概念: ORM(Object-Relational-Mapping)
 
 对象关系映射: 在关系型数据库和业务实体类之间建立映射关系, 其目的是让开发者在业务开发中:
 
 &nbsp;&nbsp;&nbsp;&nbsp;[√] 集中精力在业务实体类设计和简单的操作接口上
 
-&nbsp;&nbsp;&nbsp;&nbsp;[x] 省去编写对繁琐的数据库读写操作语句
+&nbsp;&nbsp;&nbsp;&nbsp;[x] 省去编写对繁琐的数据库CRUD的语句
 
+#### 怎么体现ORM设计理念的 ?
+
+&nbsp;&nbsp;&nbsp;&nbsp;[√] 以`Entity`实体类为核心, 构建数据库管理类
+
+&nbsp;&nbsp;&nbsp;&nbsp;[√] 以CRUD操作为核心, 构建对象
+ 
+#### 其他亮点
+
+&nbsp;&nbsp;&nbsp;&nbsp;[√] 使用注解生成辅助代码
+
+&nbsp;&nbsp;&nbsp;&nbsp;[√] 怎么解决性能问题的 ?
 
 ## 能为开发者提供哪些便利 ?
 
@@ -76,7 +87,7 @@ public class Student {
 }
 ```
 
-#### 3. 实现CURD操作
+#### 3. 实现CRUD操作
 
 插入操作示例代码如下：
 ```
@@ -118,12 +129,14 @@ cursor.close();
 #### 以上工作总结起来就是
 - 数据库管理类
 - 数据实体类 跟 数据表字段 双向 转换
-- CURD操作的实现
+- CRUD操作的实现
 
 作为一个程序员，上边这些代码我真的不想写第二遍，完全是重复劳动！！！
 
+#### 看GreenDao是如何让你摆脱这些重复编码劳动的
 
-## 需要解决哪些问题 & 如何解决 ?
+1. 
+
 
 
 ## 参考文章
