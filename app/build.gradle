@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'org.greenrobot.greendao'
+
 android {
     compileSdkVersion 29
 
@@ -29,4 +31,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    implementation 'org.greenrobot:greendao:3.3.0'
+}
+
+greendao {
+    schemaVersion 1
+    daoPackage 'into.designing.db'
+    targetGenDir 'src/main/java'
 }

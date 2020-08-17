@@ -8,7 +8,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;[√] 集中精力在业务实体类设计和简单的操作接口上
 
-&nbsp;&nbsp;&nbsp;&nbsp;[x] 省去编写对繁琐的数据库CRUD的语句
+&nbsp;&nbsp;&nbsp;&nbsp;[√] 省去编写对繁琐的数据库CRUD的语句
 
 #### 怎么体现ORM设计理念的 ?
 
@@ -27,6 +27,7 @@
 要回答这个问题，就要先想想: 如果注入GreenDao这类ORM利器, 我们要如何编写数据库操作的代码（基于SQLite）？至少应该做以下几件事：
 
 #### 1. 手动创建一个 `SQLiteOpenHelper` 的扩展类来管理数据库：
+
 - 实现数据库的创建、升级相应的函数
 - 手写创建数据库的SQL语句（如果有N个表，工作重复N次）
 - 定义数据库表格字段（如果有N个表，工作重复N次）
@@ -135,8 +136,75 @@ cursor.close();
 
 #### 看GreenDao是如何让你摆脱这些重复编码劳动的
 
-1. 
+1. 自动生成实体类的constructor/setter/getter函数
 
+自定义`Entity`实体类User如下：
+
+```java
+@Entity
+public class User {
+
+    @Id(autoincrement = true)
+    private Long id;
+
+    private int userId;
+
+    private String name;
+}
+```
+
+gradle build一下，GreenDao修改User类如下：
+
+```java
+@Entity
+public class User {
+
+    @Id(autoincrement = true)
+    private Long id;
+
+    private int userId;
+
+    private String name;
+
+    @Generated(hash = 853625527)
+    public User(Long id, int userId, String name) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+    }
+
+    @Generated(hash = 586692638)
+    public User() {
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+```
+
+2. 自动生成数据库管理类
 
 
 ## 参考文章
